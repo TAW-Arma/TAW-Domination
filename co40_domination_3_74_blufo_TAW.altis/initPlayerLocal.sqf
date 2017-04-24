@@ -9,3 +9,4 @@ if (hasInterface) then {
 };
 execVM "tasks.sqf";
 diag_log [diag_frameno, diag_ticktime, time, "MPF initPlayerLocal.sqf processed"];
+[] call SID_FNC_setupEVH;

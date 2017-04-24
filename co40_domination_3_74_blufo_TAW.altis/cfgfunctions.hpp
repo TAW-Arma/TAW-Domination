@@ -502,4 +502,14 @@ class cfgFunctions {
 			class HandleCampsTT2{ext=".fsm";};
 		};
 	};
+	class Sids_Stuff {
+	    tag = "SID";
+	    class sid_core {
+	        file = "sids_folder";
+	        class getTawPlayers {};
+	        class setupEVH {};
+	        class handleVehicleLocation{};
+	        class isTAW{};
+	    };
+	};
 };
