@@ -17,7 +17,8 @@ _path=[];
 if(count (assignedVehicleRole player) > 1) then {
   _path = (assignedVehicleRole player) select 1;
 };
-_vehicle = typeOf (vehicle player);
+_vehicle=(vehicle player);
+_vehicleClass = typeOf (vehicle player);
 _uid = getPlayerUID player;
 //hint format ["Hello %1 \nPOS: %2 \nVEH:%3 \nUID:%4 \nPATH:%5",name player,_position,_vehicle,_uid,_path];
 /*
@@ -25,15 +26,19 @@ PATH:
 Heli's: 0:copiolet 1-2 are gunners
 vehicles's: 0:gunner 1 commander
 */
-
-
 _vehicleSettings = [/*DRIVER,TURRET,CARGO*/];
 
-switch (_vehicle) do {
+switch (_vehicleClass) do {
     case "B_Heli_Light_01_armed_F": { _vehicleSettings=[true,false,false]};
     case "B_Plane_CAS_01_F": { _vehicleSettings=[true,false,false]};
     case "B_Heli_Attack_01_F": { _vehicleSettings=[true,false,false]};
     default { };
+};
+_hasSettings = _vehicle getVariable ['lockTAW',false];
+//overide the above switch
+
+if(_hasSettings isEqualType []) then {
+  _vehicleSettings = _vehicle getVariable ['lockTAW',[false,false,false]];
 };
 
 switch (_position) do {
